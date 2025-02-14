@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U Vision升学规划自我评估</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        #game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .puzzles {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .puzzle {
+            display: grid;
+            grid-template-columns: repeat(4, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 5px;
+            width: 440px;
+            height: 330px;
+            margin: 0 10px;
+            position: relative;
+            border: none;
+        }
+
+        .tile {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: black;
+            border-radius: 5px;
+            position: absolute;
+            box-sizing: border-box;
+            cursor: grab;
+            z-index: 10;
+        }
+
+        .tile[data-color="green"] {
+            background-color: rgba(76, 175, 80, 0.5); /* Green with 50% opacity */
+        }
+
+        .tile[data-color="orange"] {
+            background-color: rgba(255, 152, 0, 0.5); /* Orange with 50% opacity */
+        }
+
+        .tile[data-color="red"] {
+            background-color: rgba(244, 67, 54, 0.5); /* Red with 50% opacity */
+        }
+
+        #final-puzzle {
+            display: grid;
+            grid-template-columns: repeat(4, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 5px;
+            width: 440px;
+            height: 330px;
+            margin-top: 20px;
+            background-image: url('your-background-image.jpg');
+            background-size: cover;
+            position: relative;
+            border: none;
+        }
+
+        .tile-drop {
+            width: 100px;
+            height: 100px;
+            border: 2px dashed #000;
+            background-color: rgba(255, 255, 255, 0.8);
+            box-sizing: border-box;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hovered {
+            border: 2px solid #000;
+        }
+
+        #score {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>U Vision升学规划自我评估</h1>
+    <div id="game-container">
+        <div class="puzzles">
+            <div class="puzzle" id="green-puzzle">
+                <!-- Green puzzle tiles -->
+                <div class="tile" draggable="true" data-color="green" data-position="0" style="top: 0px; left: 0px;">我的专业方向明确</div>
+                <div class="tile" draggable="true" data-color="green" data-position="1" style="top: 0px; left: 100px;">我的托福/雅思已考出理想分数</div>
+                <div class="tile" draggable="true" data-color="green" data-position="2" style="top: 0px; left: 200px;">我的文书已经想好要写一个精彩的故事</div>
+                <div class="tile" draggable="true" data-color="green" data-position="3" style="top: 0px; left: 300px;">我有自己感兴趣且长期坚持的个人项目</div>
+                <div class="tile" draggable="true" data-color="green" data-position="4" style="top: 100px; left: 0px;">我的选课方案明确</div>
+                <div class="tile" draggable="true" data-color="green" data-position="5" style="top: 100px; left: 100px;">我对目标院校很熟悉或实地访校了解过</div>
+                <div class="tile" draggable="true" data-color="green" data-position="6" style="top: 100px; left: 200px;">我有擅长或长期坚持的特长或个人爱好</div>
+                <div class="tile" draggable="true" data-color="green" data-position="7" style="top: 100px; left: 300px;">我参加过或有明确想去的大学夏校项目</div>
+                <div class="tile" draggable="true" data-color="green" data-position="8" style="top: 200px; left: 0px;">我的 SAT/ACT 已考出理想分数</div>
+                <div class="tile" draggable="true" data-color="green" data-position="9" style="top: 200px; left: 100px;">我已经有明确的学术兴趣并快完成相关科研</div>
+                <div class="tile" draggable="true" data-color="green" data-position="10" style="top: 200px; left: 200px;">我在3个或以上社团或组织中担任领导角色</div>
+                <div class="tile" draggable="true" data-color="green" data-position="11" style="top: 200px; left: 300px;">我即将参与或已经成功获得过竞赛奖项</div>
+            </div>
+            <div class="puzzle" id="orange-puzzle">
+                <!-- Orange puzzle tiles -->
+                <div class="tile" draggable="true" data-color="orange" data-position="0" style="top: 0px; left: 0px;">我还在犹豫选择哪个专业作为申请方向</div>
+                <div class="tile" draggable="true" data-color="orange" data-position="1" style="top: 0px; left: 100px;">我已经开始学习托福但尚未制定明确规划</div>
+                <div class="tile" draggable="true" data-color="orange" data-position="2" style="top: 0px; left: 200px;">我有一些人生经历但写文书还不够深入</div>
+                <div class="tile" draggable="true" data-color="orange" data-position="3" style="top: 0px; left: 300px;">我有在做个人项目但时长与深度不足</div>
+                <div class="tile" draggable="true" data-color="orange" data-position="4" style="top: 100px; left: 0px;">我还在犹豫选择哪些校内课程或规划不足</div>
+                <div class="tile" draggable="true" data-color="orange" data-position="5" style="top: 100px; left: 100px;">我有几所自己感兴趣的学校但了解不够深入</div>
+                <div class="tile" draggable="true" data-color="orange" data-position="6" style="top: 100px; left: 200px;">我有一些兴趣但是没坚持下来或成就一般</div>
+                <div class="tile" draggable="true" data-color="orange" data-position="7" style="top: 100px; left: 300px;">我大致知道自己要上大学夏校但不确定申哪个</div>
+                <div class="tile" draggable="true" data-color="orange" data-position="8" style="top: 200px; left: 0px;">我已开始学习SAT/ACT但尚未制定明确规划</div>
+                <div class="tile" draggable="true" data-color="orange" data-position="9" style="top: 200px; left: 100px;">我知道要做科研项目但具体规划还不确定</div>
+                <div class="tile" draggable="true" data-color="orange" data-position="10" style="top: 200px; left: 200px;">我在多数活动中都是参与者或不太会领导他人</div>
+                <div class="tile" draggable="true" data-color="orange" data-position="11" style="top: 200px; left: 300px;">我了解一些竞赛但备赛还不够充分</div>
+            </div>
+            <div class="puzzle" id="red-puzzle">
+                <!-- Red puzzle tiles -->
+                <div class="tile" draggable="true" data-color="red" data-position="0" style="top: 0px; left: 0px;">我对未来的方向不清晰或不确定自己的专业</div>
+                <div class="tile" draggable="true" data-color="red" data-position="1" style="top: 0px; left: 100px;">我没有考过托福/雅思或尚未备考</div>
+                <div class="tile" draggable="true" data-color="red" data-position="2" style="top: 0px; left: 200px;">我还没有文书写作计划或写作困难</div>
+                <div class="tile" draggable="true" data-color="red" data-position="3" style="top: 0px; left: 300px;">我还没有开始个人项目或考虑不够深入</div>
+                <div class="tile" draggable="true" data-color="red" data-position="4" style="top: 100px; left: 0px;">我对学科课程没有明确的规划或选择困难</div>
+                <div class="tile" draggable="true" data-color="red" data-position="5" style="top: 100px; left: 100px;">我对目标院校了解不多或从未拜访过</div>
+                <div class="tile" draggable="true" data-color="red" data-position="6" style="top: 100px; left: 200px;">我还没有特长或个人兴趣比较分散</div>
+                <div class="tile" draggable="true" data-color="red" data-position="7" style="top: 100px; left: 300px;">我对大学夏校没有计划或没做足准备</div>
+                <div class="tile" draggable="true" data-color="red" data-position="8" style="top: 200px; left: 0px;">我尚未规划SAT/ACT或不太清楚它是什么</div>
+                <div class="tile" draggable="true" data-color="red" data-position="9" style="top: 200px; left: 100px;">我还不太懂科研是什么或尚未准备好学术挑战</div>
+                <div class="tile" draggable="true" data-color="red" data-position="10" style="top: 200px; left: 200px;">我几乎没什么活动或对很多活动没有参与意愿</div>
+                <div class="tile" draggable="true" data-color="red" data-position="11" style="top: 200px; left: 300px;">我还不知道竞赛有哪些或没有备赛规划</div>
+            </div>
+        </div>
+        <div id="final-puzzle">
+            <!-- Drop areas for puzzle pieces -->
+            <div class="tile-drop" data-position="0"></div>
+            <div class="tile-drop" data-position="1"></div>
+            <div class="tile-drop" data-position="2"></div>
+            <div class="tile-drop" data-position="3"></div>
+            <div class="tile-drop" data-position="4"></div>
+            <div class="tile-drop" data-position="5"></div>
+            <div class="tile-drop" data-position="6"></div>
+            <div class="tile-drop" data-position="7"></div>
+            <div class="tile-drop" data-position="8"></div>
+            <div class="tile-drop" data-position="9"></div>
+            <div class="tile-drop" data-position="10"></div>
+            <div class="tile-drop" data-position="11"></div>
+        </div>
+        <div id="score">
+            <!-- Score will be displayed here -->
+        </div>
+    </div>
+
+    <audio id="click-sound" src="click.mp3"></audio>
+    <audio id="ding-sound" src="Ding.mp3"></audio>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tiles = document.querySelectorAll('.tile');
+            const drops = document.querySelectorAll('.tile-drop');
+            const clickSound = document.getElementById('click-sound');
+            const dingSound = document.getElementById('ding-sound');
+            const scoreElement = document.getElementById('score');
+
+            tiles.forEach(tile => {
+                tile.addEventListener('dragstart', dragStart);
+                tile.addEventListener('dragend', dragEnd);
+            });
+
+            drops.forEach(drop => {
+                drop.addEventListener('dragover', dragOver);
+                drop.addEventListener('dragenter', dragEnter);
+                drop.addEventListener('dragleave', dragLeave);
+                drop.addEventListener('drop', dropTile);
+            });
+
+            function dragStart(e) {
+                e.dataTransfer.setData('text/plain', e.target.dataset.position);
+                e.dataTransfer.setData('text/color', e.target.dataset.color);
+                e.target.classList.add('hide');
+                e.target.style.opacity = '0.5';
+            }
+
+            function dragEnd(e) {
+                e.target.style.opacity = '';
+                e.target.classList.remove('hide');
+            }
+
+            function dragOver(e) {
+                e.preventDefault();
+            }
+
+            function dragEnter(e) {
+                e.preventDefault();
+                e.target.classList.add('hovered');
+            }
+
+            function dragLeave(e) {
+                e.target.classList.remove('hovered');
+            }
+
+            function dropTile(e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const position = e.dataTransfer.getData('text/plain');
+                const color = e.dataTransfer.getData('text/color');
+                const tile = document.querySelector(`.tile[data-position="${position}"][data-color="${color}"]`);
+
+                if (tile) {
+                    const target = e.target;
+
+                    if (target.classList.contains('tile-drop') && !target.hasChildNodes()) {
+                        const correctPosition = target.dataset.position;
+
+                        if (position === correctPosition) {
+                            // Calculate and set position for dropped tile
+                            tile.style.position = 'relative';
+                            tile.style.top = '0px';
+                            tile.style.left = '0px';
+                            target.appendChild(tile);
+                            target.classList.remove('hovered');
+                            clickSound.play();
+
+                            if (document.querySelectorAll('.tile-drop').length === drops.length &&
+                                Array.from(drops).every(drop => drop.hasChildNodes())) {
+                                dingSound.play();
+                                calculateScore();
+                            }
+                        } else {
+                            alert('请将拼图块放置在正确的位置！');
+                        }
+                    }
+                }
+            }
+
+            function calculateScore() {
+                const colorCounts = {
+                    green: 0,
+                    orange: 0,
+                    red: 0
+                };
+
+                tiles.forEach(tile => {
+                    if (tile.parentElement.classList.contains('tile-drop')) {
+                        colorCounts[tile.dataset.color]++;
+                    }
+                });
+
+                const greenCount = colorCounts.green;
+                const orangeCount = colorCounts.orange;
+                const redCount = colorCounts.red;
+
+                const score = ((greenCount * 30 + orangeCount * 20 + redCount * 10) * 100) / 360;
+
+                scoreElement.innerHTML = `优秀块数：${greenCount}，良好块数：${orangeCount}，努力块数：${redCount}，升学规划准备得分为：${score.toFixed(2)}分`;
+            }
+        });
+    </script>
+</body>
+</html>
