@@ -25,7 +25,7 @@
 
         .puzzles {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             width: 100%;
             margin-bottom: 20px;
         }
@@ -40,6 +40,7 @@
             margin: 0 10px;
             position: relative;
             border: none;
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
         .tile {
@@ -57,6 +58,7 @@
             box-sizing: border-box;
             cursor: grab;
             z-index: 10;
+            transform: translate(0, 0);
         }
 
         .tile[data-color="green"] {
